@@ -10,5 +10,23 @@
 </head>
 <body>
     <h1>HELLO WORLD</h1>
+    {% block content %}
+    <button id="addroom">Створити</button>|<button id="joinroom">Доєднатись</button>
+    <div class="form1" style="border: 1px solid black; width: 200px; padding: 5px; margin-top: 5px">
+        <form method="POST">
+            {% csrf_token %}
+            Назва: <input type="text" name="newname"><br>
+            Урл відео: <input type="text" name="newurl"><br><br>
+            <input type="submit">
+        </form>
+    </div>
+    <div class="form1" style="border: 1px solid black; width: 200px; padding: 5px; margin-top: 5px">
+        <form method="POST">
+            {% csrf_token %}
+            Код: <input type="text" name="oldcode"><br><br>
+            <input type="submit">
+        </form>
+    </div>
+    {% endblock %}
 </body>
 </html>
