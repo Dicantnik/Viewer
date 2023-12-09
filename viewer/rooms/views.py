@@ -6,22 +6,40 @@ from django.shortcuts import redirect
 
 # def main(request):
 #     return render(request, 'main.html')
+from .models import Room
 
 class MainView(View):
     def get(self, request):
         return render(request, 'main.html')
     
     def post(self, request):
+        args = request.POST
+        ctx = {}
         if "newname" in request.POST:
-            print("I will create new room.")
-            print(f"Name: {request.POST.get('newname')}")
-            print(f"URL: {request.POST.get('newurl')}")
-            return redirect('rooms:main')
+            if request.user.is_authenticated:
+                splink = args.get('newurl').split('?')[1]
+                splink = splink.split('&')[0][2:]
+                print(splink)
+                url = 'https://www.youtube.com/embed/' + splink
+                newroom = Room(name=args.get('newname'), link=url,
+                               user=request.user)
+                newroom.save()
+                return redirect("rooms:room", code=newroom.code)
+            else:
+                ctx = {"status":"error_create"}
+            return render(request, 'main.html', ctx)
         elif "oldcode" in request.POST:
             print("I try to find old room.")
-            print(f"Code: {request.POST.get('oldcode')}")
-            return redirect('rooms:main')
+            print(f"Code: {args.get('oldcode')}")
+            try:
+                room = Room.objects.all().get(code=args.get('oldcode'))
+                return redirect("rooms:room", code=args.get('oldcode'))
+            except:
+                ctx = {"status":"error_find"}
+                return render(request, 'main.html', ctx)
     
 
-def room(request):
-    return render(request, 'rooms/room.html')
+def room(request, code):
+    room = Room.objects.get(code=code)
+    ctx = {"room": room}
+    return render(request, 'rooms/room.html', ctx)

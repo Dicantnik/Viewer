@@ -1,6 +1,8 @@
 {% extends 'main.html' %}
 {% block content %}
-Назва:<br>
-Код:<br>
-Урл відео:
+Назва: {{ room.name }}<br>
+Код: {{ room.code }}<br>
+Урл відео: {{ room.link }}<br>
+Work in progress...
+<iframe width="560" height="315" src="{{ room.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 {% endblock %}

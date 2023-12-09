@@ -7,7 +7,7 @@ app_name = 'rooms'
 urlpatterns = [
    
     path('', MainView.as_view(), name='main'),
-    path('room', room, name="room")
+    path('room/<code>', room, name="room")
     
     # path('login/', views.login),
     # path('registration/', views.registration),
