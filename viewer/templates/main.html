@@ -9,9 +9,16 @@
     <title>Viewer</title>
 </head>
 <body>
-    <h1>HELLO WORLD</h1>
+    <h1>{{ request.user }}</h1>
     {% block content %}
     <button id="addroom">Створити</button>|<button id="joinroom">Доєднатись</button>
+    <div style="position: absolute; margin-left: 500px; color: red;">
+        {% if status == "error_create" %}
+            Увійдіть в акаунт щоб створити кімнату!
+        {% elif status == "error_find" %}
+            Кімнати з таким кодом не існує!
+        {% endif %}
+    </div>
     <div class="form form1" id="make_form">
         <button class="close">Close</button>
         <form class="formfill" method="POST">
