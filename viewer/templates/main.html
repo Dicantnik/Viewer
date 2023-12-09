@@ -5,28 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
-    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>Viewer</title>
 </head>
 <body>
     <h1>HELLO WORLD</h1>
     {% block content %}
     <button id="addroom">Створити</button>|<button id="joinroom">Доєднатись</button>
-    <div class="form1" style="border: 1px solid black; width: 200px; padding: 5px; margin-top: 5px">
-        <form method="POST">
+    <div class="form form1" id="make_form">
+        <button class="close">Close</button>
+        <form class="formfill" method="POST">
             {% csrf_token %}
-            Назва: <input type="text" name="newname"><br>
-            Урл відео: <input type="text" name="newurl"><br><br>
+            <div class="text">Назва: </div><input type="text" name="newname">
+            <div class="text">Урл відео: </div><input type="text" name="newurl">
             <input type="submit">
         </form>
     </div>
-    <div class="form1" style="border: 1px solid black; width: 200px; padding: 5px; margin-top: 5px">
-        <form method="POST">
+    <div class="form form2" id="join_form">
+        <button class="close">Close</button>
+        <form class="formfill" method="POST">
             {% csrf_token %}
-            Код: <input type="text" name="oldcode"><br><br>
+            <div class="text">Код: </div><input type="text" name="oldcode">
             <input type="submit">
         </form>
     </div>
     {% endblock %}
 </body>
+<script src="{% static 'js/main.js' %}"></script>
 </html>
