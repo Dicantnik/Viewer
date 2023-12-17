@@ -21,7 +21,7 @@ class MainView(View):
                 splink = splink.split('&')[0][2:]
                 print(splink)
                 url = 'https://www.youtube.com/embed/' + splink
-                newroom = Room(name=args.get('newname'), link=url,
+                newroom = Room(name=args.get('newname'), link=url, videocode = splink,
                                user=request.user)
                 newroom.save()
                 return redirect("rooms:room", code=newroom.code)
