@@ -9,13 +9,14 @@
 <div class="info">Код: {{ room.code }}</div>
 <div class="info">Урл відео: {{ room.link }}</div>
 <div class="videochat">
-<div class="video">
-    <div id="player">
+    <div class="video">
+        <div id="player">
 
+        </div>
+        
+    <!-- <iframe width="560" height="315" src="{{ room.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
     </div>
-<!-- <iframe width="560" height="315" src="{{ room.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-</div>
-<div class="chat">
+    <div class="chat">
     <div class="messages">
         <div class="message">
             <p>username</p>
@@ -37,8 +38,10 @@
             class="send_message" id="chat-message-submit"
         >Submit</button>
     </div>
+    </div>
 </div>
-</div>
+<button class="play">Play</button>
+<button class="pause">Pause</button>
 {{ room.code | json_script:"json-code"}}
 {{ room.videocode | json_script:"videocode"}}
 {% endblock %}

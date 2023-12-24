@@ -5,7 +5,8 @@ const Input = document.querySelector('.input_message')
 const SendMessage = document.querySelector('.send_message')
 const chat = document.querySelector('.messages')
 const videocode = JSON.parse(document.getElementById('videocode').textContent)
-
+const playvideo = document.querySelector('.play')
+const pausevideo = document.querySelector('.pause')
 var player;
 
 const Socket = new WebSocket(
@@ -31,16 +32,27 @@ Socket.onmessage = (e) => {
 
 
             // player.seekTo(data.time, false)
+            // console.log('WORK SEEKTO')
             // setTimeout(player.playVideo, 2000)
+            
+            // player.cueVideoById(videocode, data.time);
             player.playVideo()
+            // waitForPlayerPlaying()
+            player.seekTo(data.time.toFixed(2), true)
+            console.log(data.time.toFixed(2))
+            console.log('WORK PLAY')
         }
         else if (data.message === 'paused') {
 
 
 
             // player.seekTo(data.time, false)
+            // console.log('WORK SEEKTO')
             // setTimeout(player.pauseVideo, 2000)
             player.pauseVideo()
+            player.seekTo(data.time.toFixed(2), true)
+            console.log(data.time.toFixed(2))
+            console.log('WORK PAUSE')
         }
     }
 
@@ -77,10 +89,10 @@ function onYouTubeIframeAPIReady() {
         height: '360',
         width: '640',
         videoId: videocode,
-        events: {
+        // events: {
         // 'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-        }
+        // // 'onStateChange': onPlayerStateChange
+        // }
         
         });
         // var duration = player.getDuration()
@@ -95,10 +107,36 @@ function onYouTubeIframeAPIReady() {
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING) {
-        console.log('playing')
-        console.log(player.getCurrentTime())
+
+
+// function onPlayerStateChange(event) {
+//     if (event.data == YT.PlayerState.PLAYING) {
+//         console.log('playing')
+//         console.log(player.getCurrentTime())
+//         Socket.send(
+//             JSON.stringify({
+//                 'type': 'video',
+//                 'message': 'playing',
+//                 'time': player.getCurrentTime(),
+//             })
+//         )
+//     }
+//     if (event.data == YT.PlayerState.PAUSED) {
+//         console.log('paused')
+//         console.log(player.getCurrentTime())
+//         Socket.send(
+//             JSON.stringify({
+//                 'type': 'video',
+//                 'message': 'paused',
+//                 'time': player.getCurrentTime(),
+//             })
+//         )
+//     }
+// }
+
+
+playvideo.addEventListener('click', ()=>{
+    if (player.getPlayerState() != 1){
         Socket.send(
             JSON.stringify({
                 'type': 'video',
@@ -107,9 +145,10 @@ function onPlayerStateChange(event) {
             })
         )
     }
-    if (event.data == YT.PlayerState.PAUSED) {
-        console.log('paused')
-        console.log(player.getCurrentTime())
+})
+
+pausevideo.addEventListener('click', ()=>{
+    if (player.getPlayerState() != 2){
         Socket.send(
             JSON.stringify({
                 'type': 'video',
@@ -118,11 +157,24 @@ function onPlayerStateChange(event) {
             })
         )
     }
-}
+})
 
-// function onPlayerReady(event) {
-//     console.log('START')
-//     player.seekTo(0, true)
+// function onPlayerReady(event){
+//     // player.cueVideoById(videocode)
+//     player.playVideo();
+//     console.log('L:JFPSJFHO')
+//     // player.playVideo();
 // }
-  
 
+
+// player.loadVideoByUrl()
+async function waitForPlayerPlaying() {
+    if (player.getPlayerState() === 1) {
+      return true;
+    }
+    else {
+      setTimeout(() => {
+        waitForPlayerPlaying()
+      })
+    }
+  }
