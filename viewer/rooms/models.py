@@ -5,9 +5,10 @@ from .func import generate_random_code
 
 class Room(models.Model):
     name = models.CharField(max_length = 40)
-    code = models.CharField(max_length = 20, default = generate_random_code(), editable = True)
+    code = models.CharField(max_length = 20, default = generate_random_code())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     link = models.URLField(max_length = 150)
+    videocode = models.CharField(max_length = 20, default ='ERROR', editable = True)
 
 
     def save(self, *args, **kwargs):
