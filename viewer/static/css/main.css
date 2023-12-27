@@ -1,16 +1,115 @@
+nav{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 3px solid #E26D5A;
+    background-color: #80CED7;
+    box-sizing: border-box;
+    font-size: 26px;
+    font-family: Tahoma;
+    color: #8E3B46;
+}
+.loginbutton {
+    height: 30px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 100px;
+    box-sizing: border-box;
+    margin: 10px;
+    border: none;
+    border-radius: 0px;
+    background-color: #8E3B46;
+    color: #E26D5A;
+}
+.profilebutton {
+    height: 30px;
+    position: absolute;
+    right: 110px;
+    top: 0px;
+    width: 100px;
+    box-sizing: border-box;
+    margin: 10px;
+    border: none;
+    border-radius: 0px;
+    background-color: #8E3B46;
+    color: #E26D5A;
+}
+body {
+    display: block;
+    margin: 8px;
+    background-color: #CCDBDC;
+    font-family: Tahoma;
+    color: #8E3B46;
+}
+.main {
+    background-color: #CCDBDC;
+    margin: auto;
+    margin-top: 65px;
+    width: 60%;
+    min-width: 700px;
+}
 .form{
-    border: 1px solid black;
+    border: none;
+    border-radius: 0px;
+    background-color: #80CED7;
     width: 200px;
     padding: 5px;
     margin-top: 5px;
-    position: absolute;
-    left: 120px;
-    top: 120px;
+    position: relative;
+    margin: auto;
+    /* left: 120px;
+    top: 120px; */
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-
 }
-
+.form > form > input {
+    background-color: #CCDBDC;
+    color:#8E3B46;
+    border: none;
+    border-radius: 0px;
+}
+.form > form > input.submit-button {
+    background-color: #8E3B46;
+    color:#E26D5A;
+    border: none;
+    border-radius: 0px;
+}
+.main-page {
+    /* background-color: #80CED7; */
+    height: 300px;
+    padding-top: 300px;
+    text-align: center;
+}
+/* .main-page > h1 {
+    background-color: #80CED7;
+    height: 300px;
+    padding-top: 300px;
+} */
+#addroom {
+    margin-right: 10px;
+    background-color: #80CED7;
+    color:#E26D5A;
+    font-family: Tahoma;
+    height: 60px;
+    padding: auto;
+    font-size: 20px;
+    border: none;
+}
+#joinroom {
+    margin-left: 10px;
+    background-color: #80CED7;
+    color:#E26D5A;
+    font-family: Tahoma;
+    height: 60px;
+    padding: auto;
+    font-size: 20px;
+    border: none;
+}
 .form1{
     display: none;
 }
@@ -24,14 +123,156 @@
     right: 5px;
     width: 50px;
     margin-bottom: 5px;
+    color: #E26D5A;
+    background-color: #8E3B46;
+    border: none;
 }
-
+.videochat {
+    position: relative;
+    padding: 10px;
+    background-color: #80CED7;
+}
+.info, .user {
+    font-family: Tahoma;
+    font-size: 28px;
+}
+.title {
+    font-size: 38px;
+}
+.play {
+    top: 510px;
+}
+.pause {
+    top: 510px;
+}
 .form .formfill{
     display: flex;
     flex-direction: column;
     gap: 5px;
 } 
 
+.messages {
+    background-color: #CCDBDC;
+    padding: 10px;
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y:scroll;
+}
+/* .message {
+    display: inline;
+} */
+.message > p {
+    display: inline;
+}
+.message > p.mess_sender {
+    display: inline;
+    color: #E26D5A;
+}
 .text{
     margin-top: 5px;
+}
+.chat > .flex {
+    margin-top: 10px;
+}
+.chat > .flex > input {
+    background-color: #CCDBDC;
+    color:#8E3B46;
+    border: none;
+    border-radius: 0px;
+    height: 30px;
+    font-size: 20px;
+    /* margin-top: 10px; */
+    /* padding-top: 20px; */
+    width: 80%;
+}
+.chat > .flex > button {
+    width: 18.5%;
+    height: 30px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0px;
+    background-color: #8E3B46;
+    color: #E26D5A;
+}
+
+.login_form {
+    background-color: #80CED7;
+    text-align: center;
+    margin: auto;
+    margin-top: 300px;
+    width: 25%;
+    min-width: 350px;
+    font-size: 30px;
+}
+
+.login_form > .registr {
+    text-align: center;
+    font-size: 38px;
+}
+
+.login_form > form > input {
+    font-size: 25px;
+    background-color: #CCDBDC;
+    width: 65%;
+    color:#8E3B46;
+    border: none;
+    border-radius: 0px;
+    height: 30px;
+}
+
+.login_form > form > .button {
+    height: 30px;
+    width: 100px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0px;
+    background-color: #8E3B46;
+    color: #E26D5A;
+    margin-bottom: 10px;
+}
+
+.login_form > form > a {
+    font-size: 27px;
+}
+
+.login_form > form > .input {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.login_form > form > a > .button {
+    height: 30px;
+    width: 185px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0px;
+    background-color: #8E3B46;
+    color: #E26D5A;
+    margin-bottom: 10px;
+    font-size: 27px;
+}
+
+.roompreview {
+    background-color: #80CED7;
+    position: relative;
+    padding: 5px 0px 5px 15px;
+    margin: 15px;
+}
+
+.roompreview > a {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+}
+
+.roompreview > a > button {
+    height: 30px;
+    width: 155px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0px;
+    background-color: #8E3B46;
+    color: #E26D5A;
+    margin-bottom: 10px;
+    font-size: 27px;
 }

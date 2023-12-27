@@ -1,13 +1,13 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/room.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %}
 {% block content %}
-<div class="user">{{ request.user }}</div>
+<!-- <div class="user">{{ request.user }}</div>
 <div class="info">Назва: {{ room.name }}</div>
 <div class="info">Код: {{ room.code }}</div>
-<div class="info">Урл відео: {{ room.link }}</div>
+<div class="info">Урл відео: {{ room.link }}</div> -->
 <div class="videochat">
     <div class="video">
         <div id="player">
@@ -16,32 +16,36 @@
         
     <!-- <iframe width="560" height="315" src="{{ room.link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
     </div>
+    <div class="info title">{{ room.name }}</div>
+    <div class="user">{{ room.user }}</div>
+    <div class="info">Код: {{ room.code }}</div>
+    <div class="info">Урл відео: {{ room.link }}</div>
     <div class="chat">
     <div class="messages">
         <div class="message">
+            <p style="color:grey">Ніхто не пише? Почніть першими!</p>
+        </div>
+        <!-- <div class="message">
             <p>username</p>
             <p>Message</p>
         </div>
         <div class="message">
             <p>username</p>
             <p>Message</p>
-        </div>
-        <div class="message">
-            <p>username</p>
-            <p>Message</p>
-        </div>
+        </div> -->
     </div>
     <div  class="flex">
-        <input type="text" name="content" class="input_message" placeholder="Your message..." id="chat-message-input">
+        <input type="text" name="content" class="input_message" placeholder="Ваше повідомлення..." id="chat-message-input">
 
         <button 
             class="send_message" id="chat-message-submit"
-        >Submit</button>
+        >Відправити</button>
     </div>
     </div>
+    <button class="play loginbutton">Play</button>
+    <button class="pause profilebutton">Pause</button>
 </div>
-<button class="play">Play</button>
-<button class="pause">Pause</button>
+
 {{ room.code | json_script:"json-code"}}
 {{ room.videocode | json_script:"videocode"}}
 {% endblock %}
