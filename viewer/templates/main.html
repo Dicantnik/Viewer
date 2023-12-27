@@ -11,9 +11,21 @@
     <title>Viewer</title>
 </head>
 <body>
-    <h1>{{ request.user }}</h1>
+    <nav>UsTube
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'users:logout' %}"><button class="loginbutton">Вийти</button></a>
+        {% else %}
+        <a href="{% url 'users:login' %}"><button class="loginbutton">Увійти</button></a>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'rooms:profile' %}"><button class="profilebutton">Профіль</button></a>
+        {% endif %}
+    </nav>
+    <div class="main">
     {% block content %}
-    <button id="addroom">Створити</button>|<button id="joinroom">Доєднатись</button>
+    <div class="main-page">
+    <h1>Вітаємо на UsTube!</h1>
+    <button id="addroom">Створити</button><button id="joinroom">Доєднатись</button>
     <div style="position: absolute; margin-left: 500px; color: red;">
         {% if status == "error_create" %}
             Увійдіть в акаунт щоб створити кімнату!
@@ -27,7 +39,7 @@
             {% csrf_token %}
             <div class="text">Назва: </div><input type="text" name="newname">
             <div class="text">Урл відео: </div><input type="text" name="newurl">
-            <input type="submit">
+            <input class="submit-button" type="submit">
         </form>
     </div>
     <div class="form form2" id="join_form">
@@ -35,10 +47,12 @@
         <form class="formfill" method="POST">
             {% csrf_token %}
             <div class="text">Код: </div><input type="text" name="oldcode">
-            <input type="submit">
+            <input class="submit-button" type="submit">
         </form>
     </div>
+    </div>
     {% endblock %}
+    </div>
 </body>
 {% block js %}
 <script src="{% static 'js/main.js' %}"></script>

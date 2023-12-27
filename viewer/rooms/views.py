@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Room
 from django.views import View
 from django.shortcuts import redirect
+from django.core.exceptions import PermissionDenied
 # Create your views here.
 
 # def main(request):
@@ -43,3 +44,13 @@ def room(request, code):
     room = Room.objects.get(code=code)
     ctx = {"room": room}
     return render(request, 'rooms/room.html', ctx)
+
+
+def profileview(request):
+    if request.user.is_authenticated:
+        user = request.user
+        rooms = Room.objects.all().filter(user=user)
+        ctx = {'rooms':rooms}
+        return render(request, 'rooms/profile.html', ctx)
+    else:
+        return PermissionDenied()

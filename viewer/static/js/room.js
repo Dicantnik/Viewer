@@ -22,10 +22,10 @@ Socket.onmessage = (e) => {
     console.log('MESSAGE')
     
     if (data.type === 'message'){
-        chat.innerHTML += `<div class="message">`
-        chat.innerHTML += `<p>${data.sender}</p>`
-        chat.innerHTML += `<p>${data.message}</p>`
-        chat.innerHTML += `</div>`
+        chat.innerHTML += `<div class="message"><p class="mess_sender">${data.sender}</p>: <p class="mess_content">${data.message}</p></div>`
+        // chat.innerHTML += `<p class="mess"><p class="mess_sender">${data.sender}</p>`
+        // chat.innerHTML += `<p class="mess_content">${data.message}</p></p>`
+        // chat.innerHTML += `</div>`
     }
     else if (data.type === 'video') {
         if (data.message === 'playing') {
@@ -86,8 +86,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '360',
-        width: '640',
+        height: '500',
+        width: '100%',
         videoId: videocode,
         // events: {
         // 'onReady': onPlayerReady,
